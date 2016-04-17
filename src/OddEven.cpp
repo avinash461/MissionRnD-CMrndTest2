@@ -39,6 +39,47 @@ struct oddevennode{
 };
 
 int * oddeven_sll(struct oddevennode *head){
-
+	if ((head))
+	{
+		struct oddevennode *temp;
+		struct oddevennode *temp_even;
+		struct oddevennode *temp_odd;
+		int *count_array;
+		count_array = (int*)calloc(2, sizeof(int));
+		temp = head;
+		temp_even = NULL;
+		temp_odd = NULL;
+		while (temp)
+		{
+			if (temp->data % 2 == 0)
+			{
+				if (temp_even != NULL)
+				{
+					temp_even->random = temp;
+					temp_even = temp;
+				}
+				else
+				{
+					temp_even = temp;
+				}
+				count_array[1]++;
+			}
+			if (temp->data % 2 == 1)
+			{
+				if (temp_odd != NULL)
+				{
+					temp_odd->random = temp;
+					temp_odd = temp;
+				}
+				else
+				{
+					temp_odd = temp;
+				}
+				count_array[0]++;
+			}
+			temp = temp->next;
+		}
+		return count_array;
+	}
 	return NULL;
 }
